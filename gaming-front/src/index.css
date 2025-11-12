@@ -1,9 +1,102 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Global reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-/* Temporary background & text color check */
 body {
-  background-color: #f0f0f0;
-  color: black;
+  font-family: Arial, sans-serif; /* Normal, readable font */
+  background: #ffffff; /* White background */
+  color: #000000; /* Black text */
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Buttons */
+button {
+  background: #007bff; /* Blue accent */
+  color: #ffffff; /* White text on blue */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3; /* Darker blue on hover */
+}
+
+/* Inputs */
+input, select {
+  padding: 10px;
+  margin: 5px 0;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  background: #ffffff;
+  color: #000000;
+  width: 100%;
+  max-width: 300px;
+}
+
+input:focus, select:focus {
+  outline: 2px solid #007bff; /* Blue focus */
+}
+
+/* Links */
+a {
+  color: #007bff; /* Blue links */
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px 0;
+  padding: 10px;
+  background: #f9f9f9; /* Light gray for list items */
+  border-radius: 5px;
+  border: 1px solid #e0e0e0;
+}
+
+/* Forms */
+form {
+  background: #f9f9f9; /* Light gray background for forms */
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  max-width: 500px;
+  margin: 20px auto;
+}
+
+/* Headings */
+h1, h2, h3 {
+  color: #000000; /* Black headings */
+  margin-bottom: 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+  form {
+    padding: 15px;
+  }
 }
