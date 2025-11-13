@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { getTournaments } from './api/api';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import TournamentList from './components/TournamentList';
@@ -15,15 +16,17 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Profile from './components/Profile';
 import PlayerDashboard from './components/PlayerDashboard';
-
+import Settings from "./components/Settings";
 import TestBackend from "./components/TestBackend";
 
 
 function App() {
-  const [tournaments, setTournaments] = useState([
-    { id: 1, name: 'Battle Royale Championship', date: '2023-10-15', status: 'open' },
-    { id: 2, name: 'Strategy Masters', date: '2023-10-20', status: 'ongoing' },
-  ]);
+  const [tournaments, setTournaments] = useState([]);
+
+useEffect(() => {
+  getTournaments().then(res => setTournaments(res.data));
+}, []);
+
 
   const [users, setUsers] = useState([
     { email: 'user@example.com', password: 'password123', role: 'player' },
@@ -112,7 +115,15 @@ function App() {
     <Router>
       <div className="app">
         <Header currentUser={currentUser} onLogout={handleLogout} />
-        <main>
+        <main style={{
+  width: "100%",
+  padding: "40px",
+  maxWidth: "1200px",
+  margin: "0 auto",
+  boxSizing: "border-box"
+}}>
+
+
           <Routes>
             <Route path="/" element={<TournamentList tournaments={tournaments} />} />
             <Route path="/tournament/:id" element={<TournamentDetails tournaments={tournaments} />} />
@@ -130,6 +141,28 @@ function App() {
             <Route path="/player-dashboard" element={<PlayerDashboard currentUser={currentUser} />} />
 
             <Route path="/test" element={<TestBackend />} />
+<Route
+  path="/settings"
+  element={
+    currentUser ? (
+      <Settings
+        currentUser={currentUser}
+        onUpdatePassword={handleUpdatePassword}
+        onUpdateUsername={(newUsername) => {
+          setUsers(users.map(u => u.email === currentUser.email ? { ...u, email: newUsername } : u));
+          setCurrentUser({ ...currentUser, email: newUsername });
+        }}
+        onDeleteAccount={() => {
+          setUsers(users.filter(u => u.email !== currentUser.email));
+          setCurrentUser(null);
+        }}
+      />
+    ) : (
+      <Navigate to="/login" />
+    )
+  }
+/>
+
 
           </Routes>
         </main>
