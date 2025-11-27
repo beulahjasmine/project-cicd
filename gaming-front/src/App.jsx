@@ -18,6 +18,7 @@ import Profile from './components/Profile';
 import PlayerDashboard from './components/PlayerDashboard';
 import Settings from "./components/Settings";
 import TestBackend from "./components/TestBackend";
+import HomePage from "./components/HomePage";
 
 
 function App() {
@@ -125,7 +126,8 @@ useEffect(() => {
 
 
           <Routes>
-            <Route path="/" element={<TournamentList tournaments={tournaments} />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/tournaments" element={<TournamentList tournaments={tournaments} />} />
             <Route path="/tournament/:id" element={<TournamentDetails tournaments={tournaments} />} />
             <Route path="/register/:id" element={<RegistrationForm tournaments={tournaments} setTournaments={setTournaments} />} />
             <Route path="/leaderboard/:id" element={<Leaderboard />} />
