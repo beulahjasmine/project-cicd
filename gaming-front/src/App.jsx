@@ -3,6 +3,8 @@ import { getTournaments } from './api/api';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 
 import Header from './components/Header';
+import Footer from "./components/Footer";
+
 import TournamentList from './components/TournamentList';
 import TournamentDetails from './components/TournamentDetails';
 import RegistrationForm from './components/RegistrationForm';
@@ -375,6 +377,7 @@ function App() {
 
           </Routes>
         </main>
+        <Footer />
       </div>
     </Router>
   );

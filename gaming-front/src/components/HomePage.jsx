@@ -174,7 +174,7 @@ function HomePage() {
         <h2>Ready to Start Competing?</h2>
         <p style={{ color: "#555" }}>
           Join thousands of players participating in tournaments every week.
-        </p>
+        </p> <br />
 
         <Link
           to="/signup"
@@ -186,7 +186,7 @@ function HomePage() {
             textDecoration: "none",
             fontSize: "1.1rem",
           }}
-        >
+        > 
           Get Started
         </Link>
       </section>
